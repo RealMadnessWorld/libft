@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jarsenio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/05 19:47:32 by jarsenio          #+#    #+#             */
-/*   Updated: 2021/03/05 19:50:29 by jarsenio         ###   ########.fr       */
+/*   Created: 2021/03/05 20:19:34 by jarsenio          #+#    #+#             */
+/*   Updated: 2021/03/05 20:19:48 by jarsenio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int neg;
-	int n;
-
-	n = 0;
-	neg = 0;
-	while (*str == '\t' || *str == '\n' || *str == '\v' ||
-			*str == '\f' || *str == '\r' || *str == ' ')
-		str++;
-	if (*str == '+')
-		str++;
-	else if (*str == '-')
+	if (!s1 && !s2)
+		return (0);
+	while (n > 0 && *s1 != '\0' && *s1 == *s2)
 	{
-		neg = 1;
-		str++;
+		s1++;
+		s2++;
+		n--;
 	}
-	while (*str != '\0' && *str >= '0' && *str <= '9')
-		n = n * 10 + (*str++ - '0');
-	if (neg == 1)
-		return (-n);
+	if (n == 0)
+		return (0);
 	else
-		return (n);
+		return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

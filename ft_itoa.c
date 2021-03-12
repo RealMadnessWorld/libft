@@ -1,7 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jarsenio <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 19:53:44 by jarsenio          #+#    #+#             */
+/*   Updated: 2021/03/05 19:54:55 by jarsenio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	*ft_swap(char *s)
+#include "libft.h"
+
+static char		*ft_swap(char *s)
 {
 	int		i;
 	int		leng;
@@ -9,17 +20,17 @@ char	*ft_swap(char *s)
 
 	leng = ft_strlen(s);
 	i = 0;
-	while(i < leng / 2)
+	while (i < leng / 2)
 	{
 		temp = s[i];
 		s[i] = s[leng - i - 1];
 		s[leng - i - 1] = temp;
 		i++;
 	}
-	return(s)
+	return (s);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	int		sign;
 	int		i;
@@ -33,12 +44,12 @@ char	*ft_itoa(int n)
 		return (ft_strdup("0"));
 	sign = (n < 0) ? -1 : 1;
 	n = (n < 0) ? -n : n;
-	while(n > 0)
+	while (n > 0)
 	{
 		str[i++] = (n % 10) + '0';
 		n /= 10;
 	}
-	if(sign < 0)
+	if (sign < 0)
 		str[i] = '-';
 	ft_swap(str);
 	return (ft_strdup(str));

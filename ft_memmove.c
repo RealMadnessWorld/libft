@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jarsenio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/05 19:47:32 by jarsenio          #+#    #+#             */
-/*   Updated: 2021/03/05 19:50:29 by jarsenio         ###   ########.fr       */
+/*   Created: 2021/02/18 15:14:19 by jarsenio          #+#    #+#             */
+/*   Updated: 2021/03/05 20:03:05 by jarsenio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	int neg;
-	int n;
+	const char	*tsrc;
+	char		*tdest;
 
-	n = 0;
-	neg = 0;
-	while (*str == '\t' || *str == '\n' || *str == '\v' ||
-			*str == '\f' || *str == '\r' || *str == ' ')
-		str++;
-	if (*str == '+')
-		str++;
-	else if (*str == '-')
+	tsrc = src;
+	tdest = dest;
+	if (!dest && !src)
+		return (0);
+	if (src < dest)
 	{
-		neg = 1;
-		str++;
+		tsrc = tsrc + len - 1;
+		tdest = tdest + len - 1;
+		while (len--)
+		{
+			*tdest-- = *tsrc--;
+		}
 	}
-	while (*str != '\0' && *str >= '0' && *str <= '9')
-		n = n * 10 + (*str++ - '0');
-	if (neg == 1)
-		return (-n);
 	else
-		return (n);
+		while (len--)
+		{
+			*tdest++ = *tsrc++;
+		}
+	return (dest);
 }

@@ -1,25 +1,35 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jarsenio <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 20:09:35 by jarsenio          #+#    #+#             */
+/*   Updated: 2021/03/05 20:12:15 by jarsenio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int		counter(char const *s, char c)
+#include "libft.h"
+
+static int		counter(char const *s, char c)
 {
 	int		i;
 	int		word;
 
 	i = 0;
 	word = 0;
-	while(s[i] == c && s[i] != '\0')
+	while (s[i] == c && s[i] != '\0')
 		i++;
-	if(s[i] != c)
+	if (s[i] != c)
 		word++;
-	while(s[i] != '\0')
+	while (s[i] != '\0')
 	{
-		if(s[i] == c)
+		if (s[i] == c)
 		{
-			while(s[i] == c && s[i] != '\0')
+			while (s[i] == c && s[i] != '\0')
 				i++;
-			if(s[i] != '\0')
+			if (s[i] != '\0')
 				word++;
 		}
 		else
@@ -28,62 +38,31 @@ int		counter(char const *s, char c)
 	return (word);
 }
 
-char	allocating(const char *s, char c)
+char			**ft_split(char const *s, char c)
 {
-	int		i;
+	char	**dst;
 	char	*str;
+	int		i;
 
 	i = 0;
-	str = 0;
-	while(s[i] != c && s[i] != '\0')
-		i++;
-	if(!(str = (char *)malloc(sizeof(char) * (i + 1))))
+	if (!s)
 		return (0);
-	ft_strlcpy(str, s, i + 1);
-	printf("%s\n", str);
-	return (str);
-}
-
-char 	**ft_split(char const *s, char c)
-{
-	char	**str;
-	int		word;
-	int		i;
-	int		d;
-
-	i = -1;
-	d = 0;
-	printf("hi\n");
-	word = counter(s, c);
-	if(!s)
+	if (!(dst = (char **)malloc(sizeof(char *) * counter(s, c) + 1)))
 		return (0);
-	if(!(str = malloc(sizeof(*s) * (word + 1))))
-		return (0);
-	while(++i < word)
+	while (*s)
 	{
-		printf("%d\n", i);
-		while(s[d] == c)
+		if (*s != c)
 		{
-			printf("st\n");
-			d++;
+			str = (char *)s;
+			while (*s && *s != c)
+				s++;
+			if (!(dst[i] = (char *)malloc(s - str + 1)))
+				return (0);
+			ft_strlcpy(dst[i++], str, s - str + 1);
 		}
-		if(!(str[i] = allocating(s, c)))
-		{
-			while(i > 0)
-				free(str[i--]);
-			free(str);
-			return (0);
-		}
-		s = s[d + ft_strlen(str[i])];
+		else
+			s++;
 	}
-	printf("%s\n", str);
-	str[i] = '\0';
-	return (str);
-}
-
-int main()
-{
-	char str[] = "I'm amazing happy face";
-    printf("%s\n", ft_split(str, ' '));
-    return 0;
+	dst[i] = 0;
+	return (dst);
 }

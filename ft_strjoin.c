@@ -1,7 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jarsenio <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 20:14:44 by jarsenio          #+#    #+#             */
+/*   Updated: 2021/03/05 20:15:28 by jarsenio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char *ft_strjoin(char const *s1, char const *s2)
+#include "libft.h"
+
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
 	int		j;
@@ -9,15 +20,17 @@ char *ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	str = malloc(sizeof(*s1) *(strlen(s1) + strlen(s2) + 1));
-	if(!str)
+	if (!s1 || !s2)
 		return (NULL);
-	while(s1[i] != '\0')
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
 		str[i] = s1[i];
 		i++;
 	}
-	while(s2[i] != '\0')
+	while (s2[j] != '\0')
 	{
 		str[i] = s2[j];
 		i++;
@@ -25,12 +38,4 @@ char *ft_strjoin(char const *s1, char const *s2)
 	}
 	str[i] = '\0';
 	return (str);
-}
-
-int main()
-{
-	char s1[] = "I love you";
-	char s2[] = " Nastinka";
-    printf("%s\n", ft_strjoin(s1, s2));
-    return 0;
 }

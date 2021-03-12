@@ -1,9 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jarsenio <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 20:08:24 by jarsenio          #+#    #+#             */
+/*   Updated: 2021/03/05 20:08:47 by jarsenio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void ft_putstr_fd(char *s, int fd)
+#include "libft.h"
+
+void	ft_putstr_fd(char *s, int fd)
 {
-	if(!s)
-		return (0);
-	write(fd, &s, ft_strlen(s));
+	int		i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (*s != '\0')
+	{
+		write(fd, s, 1);
+		s++;
+	}
 }

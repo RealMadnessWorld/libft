@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jarsenio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/05 19:47:32 by jarsenio          #+#    #+#             */
-/*   Updated: 2021/03/05 19:50:29 by jarsenio         ###   ########.fr       */
+/*   Created: 2021/03/05 20:20:13 by jarsenio          #+#    #+#             */
+/*   Updated: 2021/03/09 17:11:37 by jarsenio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	int neg;
-	int n;
+	size_t i;
+	size_t j;
 
-	n = 0;
-	neg = 0;
-	while (*str == '\t' || *str == '\n' || *str == '\v' ||
-			*str == '\f' || *str == '\r' || *str == ' ')
-		str++;
-	if (*str == '+')
-		str++;
-	else if (*str == '-')
+	i = 0;
+	if (!*s2)
+		return ((char *)s1);
+	while (*s1 && i < n)
 	{
-		neg = 1;
-		str++;
+		j = 0;
+		while ((i + j) < n && s1[i + j] == s2[j])
+		{
+			if (s2[j + 1] == '\0')
+			{
+				return ((char *)&(s1[i]));
+			}
+			j++;
+		}
+		i++;
 	}
-	while (*str != '\0' && *str >= '0' && *str <= '9')
-		n = n * 10 + (*str++ - '0');
-	if (neg == 1)
-		return (-n);
-	else
-		return (n);
+	return (0);
 }
