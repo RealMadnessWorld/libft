@@ -13,11 +13,19 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+/****************************\
+*		   Includes 		 *
+\****************************/
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdarg.h>
 # include "./libft.h"
+
+/****************************\
+*		  Structures		 *
+\****************************/
 
 typedef struct s_fl
 {
@@ -29,6 +37,10 @@ typedef struct s_fl
 	int		dot;
 	char	letter;
 }				t_flags;
+
+/****************************\
+*		   Functions 	     *
+\****************************/
 
 int		ft_printf(const char *str, ...);
 t_flags	flags_init(void);
@@ -66,10 +78,10 @@ int		ft_putchar(char c);
 void	ft_putstr(char *s);
 int		print_width(int width, int zero, int size);
 int		putstr_w_prec(char *s, int dot);
-int		ft_strlen(const char *str);
+int		ft_strlenpf(const char *str);
 char	*ft_strdup(const char *string);
-char	*ft_tolower(char *str);
-char	*ft_itoa(long int n);
+char	*ft_tolowerpf(char *str);
+char	*ft_itoapf(long int n);
 int		intlen(long int n, int base);
 char	*unsigneditoa(unsigned long long n, int base);
 int		unintlen(unsigned long long n, int base);

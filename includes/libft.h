@@ -13,14 +13,54 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+/****************************\
+*		   Includes 		 *
+\****************************/
+
+# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <time.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include "ft_printf.h"
+# include "get_next_line.h"
 
-typedef struct	s_list
+/****************************\
+*		 Text colors		 *
+\****************************/
+
+/*
+** RED = red
+** GRN = green
+** YLW = yellow
+** BLU = blue
+** MGT = magenta
+** CYN = cyan
+** RST = reset
+*/
+
+# define CLR_RED "\x1b[31m"
+# define CLR_GRN "\x1b[32m"
+# define CLR_YLW "\x1b[33m"
+# define CLR_BLU "\x1b[34m"
+# define CLR_MGT "\x1b[35m"
+# define CLR_CYN "\x1b[36m"
+# define CLR_RST "\x1b[0m"
+
+/****************************\
+*		  Structures		 *
+\****************************/
+
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }				t_list;
+
+/****************************\
+*		   Functions 	     *
+\****************************/
 
 void			*ft_memset(void *str, int c, size_t n);
 void			ft_bzero(void *str, size_t n);
@@ -65,6 +105,10 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
-				void (*del)(void *));
+					void (*del)(void *));
+void			ft_error(char *error);
+int				find_extention(char *str, char *ext);
+char			*chk_img_path(char *path);
+int				random_num(int lower, int upper);
 
 #endif

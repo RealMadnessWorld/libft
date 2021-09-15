@@ -18,9 +18,9 @@ int	insta_fix(t_flags *s_fl, char *str)
 
 	counter = 0;
 	if (s_fl->dot <= -1)
-		s_fl->dot = ft_strlen(str);
+		s_fl->dot = ft_strlenpf(str);
 	if (s_fl->dot >= 0)
-		counter += print_width(s_fl->dot, 1, ft_strlen(str));
+		counter += print_width(s_fl->dot, 1, ft_strlenpf(str));
 	return (counter);
 }
 
@@ -46,8 +46,8 @@ int	print_unsigned(char *str, t_flags s_fl)
 	int	counter;
 
 	counter = 0;
-	if (s_fl.dot >= 0 && (s_fl.dot < ft_strlen(str)))
-		s_fl.dot = ft_strlen(str);
+	if (s_fl.dot >= 0 && (s_fl.dot < ft_strlenpf(str)))
+		s_fl.dot = ft_strlenpf(str);
 	if (s_fl.minus == 1)
 	{
 		counter += insta_fix(&s_fl, str);
@@ -56,7 +56,7 @@ int	print_unsigned(char *str, t_flags s_fl)
 	if (s_fl.dot >= 0)
 		counter += print_width(s_fl.width, 0, s_fl.dot);
 	else
-		counter += print_width(s_fl.width, s_fl.zero, ft_strlen(str));
+		counter += print_width(s_fl.width, s_fl.zero, ft_strlenpf(str));
 	if (s_fl.minus == 0)
 	{
 		counter += insta_fix(&s_fl, str);

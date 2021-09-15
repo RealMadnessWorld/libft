@@ -61,13 +61,13 @@ int	ptr_width(char *str, t_flags s_fl)
 	if (s_fl.dot >= 0)
 	{
 		counter += putstr_w_prec("0x", 2);
-		counter += print_width(s_fl.dot, 1, ft_strlen(str));
+		counter += print_width(s_fl.dot, 1, ft_strlenpf(str));
 		counter += putstr_w_prec(str, s_fl.dot);
 	}
 	else
 	{
 		counter += putstr_w_prec("0x", 2);
-		counter += putstr_w_prec(str, ft_strlen(str) + 2);
+		counter += putstr_w_prec(str, ft_strlenpf(str) + 2);
 	}
 	return (counter);
 }
@@ -81,9 +81,9 @@ int	pointer_conv(unsigned long long ptr, t_flags s_fl)
 	if (ptr == 0 && (s_fl.dot == 0 || s_fl.dot == -1))
 		return (empty_ptr(s_fl));
 	str = unsigneditoa(ptr, 16);
-	str = ft_tolower(str);
-	if (s_fl.dot < ft_strlen(str))
-		s_fl.dot = ft_strlen(str);
+	str = ft_tolowerpf(str);
+	if (s_fl.dot < ft_strlenpf(str))
+		s_fl.dot = ft_strlenpf(str);
 	if (s_fl.minus == 1)
 		counter += ptr_width(str, s_fl);
 	if (s_fl.width > s_fl.dot)

@@ -12,7 +12,15 @@
 
 #include "../includes/libft.h"
 
-static char		*ft_swap(char *s)
+static int	is_neg(int i)
+{
+	if (i < 0)
+		return (-1);
+	else
+		return (1);
+}
+
+static char	*ft_swap(char *s)
 {
 	int		i;
 	int		leng;
@@ -30,20 +38,21 @@ static char		*ft_swap(char *s)
 	return (s);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	int		sign;
 	int		i;
 	char	str[12];
 
 	i = 0;
+	sign = 0;
 	ft_memset(str, 0, 12);
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	else if (n == 0)
 		return (ft_strdup("0"));
-	sign = (n < 0) ? -1 : 1;
-	n = (n < 0) ? -n : n;
+	sign = is_neg(n);
+	n = is_neg(n) * n;
 	while (n > 0)
 	{
 		str[i++] = (n % 10) + '0';

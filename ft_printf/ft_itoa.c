@@ -70,7 +70,7 @@ char	*unsigneditoa(unsigned long long n, int base)
 	return (str);
 }
 
-char	*ft_itoa(long int n)
+char	*ft_itoapf(long int n)
 {
 	char	*res;
 	size_t	len;

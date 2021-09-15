@@ -17,17 +17,17 @@ int	hexa_print(t_flags s_fl, char *str)
 	int	counter;
 
 	counter = 0;
-	if (s_fl.dot >= 0 && (s_fl.dot < ft_strlen(str)))
-		s_fl.dot = ft_strlen(str);
+	if (s_fl.dot >= 0 && (s_fl.dot < ft_strlenpf(str)))
+		s_fl.dot = ft_strlenpf(str);
 	if (s_fl.dot >= 0)
 		counter += print_width(s_fl.width, 0, s_fl.dot);
 	else
-		counter += print_width(s_fl.width, s_fl.zero, ft_strlen(str));
+		counter += print_width(s_fl.width, s_fl.zero, ft_strlenpf(str));
 	if (s_fl.minus == 0)
 	{
 		if (s_fl.dot >= 0)
-			counter += print_width(s_fl.dot, 1, ft_strlen(str));
-		counter += putstr_w_prec(str, ft_strlen(str));
+			counter += print_width(s_fl.dot, 1, ft_strlenpf(str));
+		counter += putstr_w_prec(str, ft_strlenpf(str));
 	}
 	return (counter);
 }
@@ -45,12 +45,12 @@ int	hexa_conv(unsigned int num, int caps, t_flags s_fl)
 	}
 	str = unsigneditoa(num, 16);
 	if (caps == 0)
-		str = ft_tolower(str);
+		str = ft_tolowerpf(str);
 	if (s_fl.minus == 1)
 	{
 		if (s_fl.dot >= 0)
-			counter += print_width(s_fl.dot, 1, ft_strlen(str));
-		counter += putstr_w_prec(str, ft_strlen(str));
+			counter += print_width(s_fl.dot, 1, ft_strlenpf(str));
+		counter += putstr_w_prec(str, ft_strlenpf(str));
 	}
 	counter += hexa_print(s_fl, str);
 	free(str);

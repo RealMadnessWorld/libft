@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlenpf(const char *str)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ char	*ft_strdup(const char *string)
 	int		i;
 
 	i = 0;
-	ptr = (char *)malloc(sizeof(*string) * (ft_strlen(string) + 1));
+	ptr = (char *)malloc(sizeof(*string) * (ft_strlenpf(string) + 1));
 	if (!ptr)
 		return (NULL);
 	while (string[i] != '\0')
@@ -40,7 +40,7 @@ char	*ft_strdup(const char *string)
 	return (ptr);
 }
 
-char	*ft_tolower(char *str)
+char	*ft_tolowerpf(char *str)
 {
 	int	i;
 

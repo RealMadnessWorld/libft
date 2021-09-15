@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   check_img_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jarsenio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/09 16:30:36 by jarsenio          #+#    #+#             */
-/*   Updated: 2021/03/09 16:31:16 by jarsenio         ###   ########.fr       */
+/*   Created: 2021/09/10 17:30:25 by jarsenio          #+#    #+#             */
+/*   Updated: 2021/09/10 17:30:26 by jarsenio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+char	*chk_img_path(char *path)
 {
-	if (!lst)
-		return ;
-	del(lst->content);
-	free(lst);
+	if (open((path), O_RDONLY) < 0)
+		ft_error(CLR_RED "You're lacking the images... focus please\n" CLR_RST);
+	return (path);
 }

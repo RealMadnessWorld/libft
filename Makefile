@@ -26,7 +26,9 @@ SRCS		=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 				ft_strrchr.c ft_strncmp.c ft_strnstr.c ft_atoi.c ft_strdup.c \
 				ft_calloc.c  ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 				ft_putstr_fd.c ft_split.c ft_strjoin.c ft_strtrim.c \
-				ft_substr.c ft_strmapi.c ft_itoa.c get_next_line.c
+				ft_substr.c ft_strmapi.c ft_itoa.c get_next_line.c \
+				ft_error.c find_ext.c check_img_path.c random_num_gen.c \
+				gnl_func.c
 HEADERS		= ft_printf.h get_next_line.h libft.h
 
 OBJS = $(SRCS:.c=.o)
@@ -60,7 +62,6 @@ clean:
 				@rm -rf $(OBJDIR)
 				@make clean -C $(PRINTF_PATH)
 				@$(RM) $(OBJS) $(BONUS_OBJS)
-				@echo ".O DELETED"
 
 fclean:		clean
 				@$(RM) $(NAME)
